@@ -5,16 +5,18 @@ class Player{
 	String name;
 	int hp;
 	float attack;
-	
+	int a = 0;
 	Player(){
 		name = "";
 		hp = 0;
 		attack = 0;
 	}
-	Player(String name,int hp, int attack){
+	Player(String name,int hp){
 		this.name = name;
 		this.hp = hp;
-		this.attack = attack;
+	}
+	void attacken(int a){
+		this.attack = a;
 	}
 	Scanner sc = new Scanner(System.in);
 	public void scfor(){
@@ -24,13 +26,13 @@ class Player{
 		char a;
 		while(true){
 			try{
-				System.out.println("input "+text+" : ");
-				a = sc.next().charAt(0);
+				System.out.print("input "+text+" : ");
+				a = sc.next().toLowerCase().charAt(0);
 				scfor();
 				return a;
 			}catch(InputMismatchException e){
 				System.out.println(e.getMessage());
-				sc.next();
+				sc.nextLine();
 			}
 		}
 	}
@@ -42,10 +44,10 @@ class Player{
 				a = sc.nextLine();
 				
 				return a;	
-		}catch(InputMismatchException e){
-			System.out.println(e.getMessage());
-			sc.next();
-		}
+			}catch(InputMismatchException e){
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
 		}
 	}
 	int inputint(String text){
@@ -57,17 +59,16 @@ class Player{
 				scfor();
 				return a;
 			
-		}catch(InputMismatchException e){
-			System.out.println(e.getMessage());
-			sc.next();
-		}
+			}catch(InputMismatchException e){
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
 		}
 	}
-	
 	void out(){
 		System.out.println("name is = "+name);
-		System.out.println("name is = "+hp);
-		System.out.println("name is = "+attack);
+		System.out.println("hp is = "+hp);
+		System.out.println("attack is = "+attack);
 	}
 	void heal (Player Enemy){
 		Enemy.hp += 10;
@@ -77,16 +78,7 @@ class Player{
 		System.out.println("draw!!!!!!!!!");
 	}
 	void attack(Player Enemy, Player Hero){
-		
 		Enemy.hp -= Hero.attack;
-		if(Enemy.hp <=0){
-			System.out.println(Enemy.name+" is dead");
-			System.out.println("draw!!!!!!!!!");
-		}else{
-			System.out.println(Enemy.name+" Hit Points = "+Enemy.hp);
-		}
-		
-		
 	}
 	
 }
